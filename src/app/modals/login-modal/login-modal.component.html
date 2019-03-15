@@ -1,0 +1,35 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+       <div class="modal-header">
+         <button type="button" class="close" (click)="close()" >&times;</button>
+         <h4 class="modal-title">{{title || 'Confirm'}}</h4>
+       </div>
+       <div class="modal-body">
+        
+          <form #loginForm="ngForm">
+              <div class="input-group margin-top-20">
+                  <span class="input-group-addon">Email</span>
+                  <input type="text" #eid="ngModel" class="form-control" name="email" [(ngModel)]="email" placeholder="Your Email Here" required>
+              </div>
+              <div *ngIf="eid.touched && eid.invalid" class="red">
+                  <div *ngIf="eid.errors.required"> Email is Mandatory </div>
+                  <div *ngIf="eid.errors.pattern"> Enter Valid Email </div>
+              </div>
+              <div class="input-group margin-top-20">
+                  <span class="input-group-addon">Password</span>
+                  <input type="password" #pass="ngModel" class="form-control" name="password" [(ngModel)]="password" placeholder="Your Password Here"
+                      required>
+              </div>
+
+              <div *ngIf="pass.touched && pass.invalid" class="red">
+                  <div *ngIf="pass.errors.required"> Password is Mandatory </div>
+              </div>
+          </form>
+
+       </div>
+       <div class="modal-footer">
+          <button type="button" class="margin-top-20 btn btn-success" (click)="cancle()">Cancle</button>
+          <button type="button" class="margin-top-20 btn btn-success" [disabled]="!loginForm.form.valid" (click)="confirm()">Login</button>
+      </div>
+     </div>
+  </div>
